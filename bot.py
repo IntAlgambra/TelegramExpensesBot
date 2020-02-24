@@ -5,8 +5,6 @@ import click
 
 from backend import Backend
 
-telebot.apihelper.proxy = {'https': 'socks5://127.0.0.1:9150'}
-
 #Получаем токен бота из переменной среды (или вставляем свой)
 token = os.getenv('EXPENSES_BOT_TOKEN')
 
