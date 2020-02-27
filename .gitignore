@@ -3,5 +3,6 @@ __pycache__/
 venv/
 temp/
 TZ.txt
+server.py
 .env
 *.db

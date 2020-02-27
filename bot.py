@@ -10,8 +10,6 @@ from backend import Backend
 dotenv.load_dotenv()
 token = os.getenv('EXPENSES_BOT_TOKEN')
 
-print('token: {}'.format(token))
-
 bot = telebot.TeleBot(token)
 backend = Backend()
 
