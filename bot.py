@@ -2,10 +2,12 @@ import os
 
 import telebot
 import click
+import dotenv
 
 from backend import Backend
 
 #Получаем токен бота из переменной среды (или вставляем свой)
+dotenv.load_dotenv()
 token = os.getenv('EXPENSES_BOT_TOKEN')
 
 print('token: {}'.format(token))
