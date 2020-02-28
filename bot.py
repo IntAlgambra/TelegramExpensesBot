@@ -15,7 +15,13 @@ backend = Backend()
 
 @bot.message_handler(commands = ['start'])
 def send_welcoome(message):
-    bot.reply_to(message, 'Привет! Введи /add чтобы создать аккаунт')
+    chat_id = message.chat.id
+    bot.send_message(chat_id, backend.help_message)
+
+@bot.message_handler(commands = ['help'])
+def send_help(message):
+    chat_id = message.chat.id
+    bot.send_message(chat_id, backend.help_message)
 
 @bot.message_handler(commands = ['add'])
 def add_account(message):

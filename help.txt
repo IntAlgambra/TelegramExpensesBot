@@ -1,0 +1,14 @@
+Hello! This bot can help you manage your finance. To start using bot use /add command and type your start balance (you can not to do it, then bot will only consider your absolut incomes and outcomes).
+
+to add outcome type '[number] description' where [number] is an outcome amount
+
+to add income print '+[number] description'
+
+available commands:
+
+/get_balance - returning your current balance
+/update_balance - updating your absolute balance
+/get_today_outcomes - getting list of today outcomes
+/get_csv_outcomes - getting outcomes in csv file (to import it in excel)
+
+use /add to start working with bot!

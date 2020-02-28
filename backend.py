@@ -1,5 +1,6 @@
 from database import Database
 import csv
+import os
 
 class Backend():
 
@@ -14,6 +15,13 @@ class Backend():
 
     def __init__(self):
         self.db = Database()
+        with open('help.txt', 'r') as f:
+            self.help_message = f.read()
+        #Проверяем наличие папки для сохранения временных csv файлов
+        self.temp_path = 'temp/'
+        if not os.path.exists(self.temp_path):
+            os.mkdir('temp')
+
 
     def create_account(self, chat_id, balance):
         self.db.add_user(chat_id, balance)
@@ -57,6 +65,8 @@ class Backend():
 
     def get_today_outcomes(self, chat_id):
         today_outcomes = self.db.get_today_outcomes(chat_id)
+        if not today_outcomes:
+            return 'There was no outcomes today'
         response = self.format_transactions(today_outcomes)
         return response
 
