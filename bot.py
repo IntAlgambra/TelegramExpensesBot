@@ -30,7 +30,11 @@ def add_account(message):
 
 def process_balance(message):
     chat_id = message.chat.id
-    balance = int(message.text)
+    try:
+        balance = int(message.text)
+    except ValueError:
+        msg = bot.reply_to(message, 'Введите пожалуйста число')
+        bot.register_next_step_handler(msg, process_balance)
     backend.create_account(chat_id, balance)
     bot.reply_to(message, 'аккаунт создан')
 
