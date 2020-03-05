@@ -13,6 +13,10 @@ token = os.getenv('EXPENSES_BOT_TOKEN')
 bot = telebot.TeleBot(token)
 backend = Backend()
 
+def set_proxy():
+    telebot.apihelper.proxy = {'https': 'socks5://127.0.0.1:9150'}
+
+
 @bot.message_handler(commands = ['start'])
 def send_welcoome(message):
     chat_id = message.chat.id
@@ -91,11 +95,22 @@ def process_message(message):
 def start():
     pass
 
+@start.command(help='set up webhook from .env file')
+def set_webhook_tor():
+    webhook_hostname = os.getenv('HOSTNAME')
+    webhook_url = '{}/{}/'.format(webhook_hostname, token)
+    print(webhook_url)
+    bot.set_webhook(url=webhook_url)
+
+@start.command(help='remove webhook from bot')
+def remove_webhook_tor():
+    bot.remove_webhook()
+
 @start.command(help='starts bot without proxy')
 def start_bot():
     bot.polling()
 
-@start.command(help='starts bot with passing traffic through tor on port 9150 (TOR need to be launched)')
+@start.command(help='starts bot with passing traffic through tor on port 9150 (TOR has to be launched)')
 def start_tor_bot():
     telebot.apihelper.proxy = {'https': 'socks5://127.0.0.1:9150'}
     bot.polling()
